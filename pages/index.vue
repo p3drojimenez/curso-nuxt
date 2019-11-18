@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <Hero>
+      <div slot="header">
+        <p>Soy el slot desde el padre index.vue</p>
+      </div>
+    </Hero>
     <section class="section">
       <RestaurantCard
         name="Bar Paco"
@@ -14,10 +19,13 @@
 </template>
 
 <script>
-import RestaurantCard from "../components/RestaurantCard"
+import RestaurantCard from "~/components/RestaurantCard"
+import Hero from "~/components/Hero"
+
 export default {
   components: {
-    RestaurantCard
+    RestaurantCard,
+    Hero
   },
   data() {
     return {
