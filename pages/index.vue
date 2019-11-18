@@ -39,13 +39,20 @@ export default {
     Banner,
     Slogan
   },
-  
-  async created(){
-    const response = await api.getRestaurants()
-    if(response.status == 200) {
-      this.restaurants = response.data
+  async asyncData() {
+    try {
+      const { data } = await api.getRestaurants()
+      return { restaurants: data }
+    } catch {
+      return { restaurants: [] }
     }
   },
+  // async created(){
+  //   const response = await api.getRestaurants()
+  //   if(response.status == 200) {
+  //     this.restaurants = response.data
+  //   }
+  // },
   data() {
     return {
       likes: 0,
