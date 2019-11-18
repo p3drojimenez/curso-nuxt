@@ -6,17 +6,20 @@
     </Hero>
     <div class="container">
       <section class="section">
+        <div class="columns is-multiline">
           <RestaurantCard
             :name="restaurant.name"
             :description="restaurant.description"
             :category="restaurant.category"
             :slug="restaurant.slug"
             :likes="restaurant.likes"
-            v-on:onLikeButton="sumLikes(index)"
+            v-on:onLikeButton="sumLikes(restaurant)"
             v-for="(restaurant, index) in restaurants"
             :key="index"
+            class="restaurant-card"
            
           />
+        </div>
       </section>
     </div>
   </div>
@@ -36,6 +39,7 @@ export default {
     Banner,
     Slogan
   },
+  
   async created(){
     const response = await api.getRestaurants()
     if(response.status == 200) {
@@ -50,8 +54,18 @@ export default {
     }
   },
   methods: {
-    sumLikes(index) {
-      this.restaurants[index].likes = this.restaurants[index].likes + 1
+    async sumLikes(restaurant) {
+      const payload = {
+        id: restaurant.id,
+        data: {
+          likes: restaurant.likes + 1
+        }
+      }
+      const response = await api.putSumRestaurantLikes(payload)
+      console.log(response)
+      if(response.status == 200) {
+        restaurant.likes++
+      }
     },
     changeShowBanneValue() {
       this.showBanner = !this.showBanner
@@ -61,4 +75,8 @@ export default {
 </script>
 
 <style>
+.restaurant-card {
+  margin: 10px 10px;
+  max-width: 300px;
+}
 </style>
