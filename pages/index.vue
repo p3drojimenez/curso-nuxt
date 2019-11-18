@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <section class="section">
-      <RestaurantCard />
+      <RestaurantCard
+        name="Bar Paco"
+        description="Descripción del restaurante"
+        category="burger"
+        slug="bar-paco"
+      />
     </section>
   </div>
 </template>

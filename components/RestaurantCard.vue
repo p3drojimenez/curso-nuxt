@@ -35,13 +35,27 @@
 
 <script>
 export default {
+  props: {
+    name: {
+      type: String,
+      defaul: ''
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    category: {
+      type: String,
+      default: ''
+    },
+    slug: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
-      name: 'Bar Paco',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus neciaculis mauris.',
-      likes: 0,
-      category: 'burger',
-      slug: 'restaurant-name'
+      likes: 0
     }
   },
   methods: {
