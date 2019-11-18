@@ -9,28 +9,48 @@
       <div class="media">
         <div class="media-content">
           <p class="title is-4 restaurant-name">
-            Restaurant Name
+            {{ name }}
           </p>
           <div class="columns">
             <div class="column">
-              <span class="is-category tag">Category</span>
+              <span class="is-category tag">
+                {{ category }}
+              </span>
             </div>
             <div class="column has-text-right">
-              <button class="button is-info">0</button>
+              <button class="button is-info" v-on:click="sumLikes">
+                {{ likes }}
+              </button>
             </div>
           </div>
         </div>
       </div>
       <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus nec
-        iaculis mauris.<a href="">more info</a>.
+        {{ description}}
+        <a v-bind:href="slug">more info</a>.
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      name: 'Bar Paco',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus neciaculis mauris.',
+      likes: 0,
+      category: 'burger',
+      slug: 'restaurant-name'
+    }
+  },
+  methods: {
+    sumLikes() {
+      // this.likes = this.likes + 1
+      this.likes++
+    }
+  }
+}
 </script>
 
 <style scoped>
