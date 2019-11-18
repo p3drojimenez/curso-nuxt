@@ -51,17 +51,17 @@ export default {
     slug: {
       type: String,
       default: ''
-    }
-  },
-  data() {
-    return {
-      likes: 0
+    },
+    likes: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
     sumLikes() {
+      this.$emit('onLikeButton')
       // this.likes = this.likes + 1
-      this.likes++
+      // this.likes++
     }
   }
 }
