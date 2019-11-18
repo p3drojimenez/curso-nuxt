@@ -26,6 +26,7 @@ import RestaurantCard from "~/components/RestaurantCard"
 import Hero from "~/components/Hero"
 import Banner from "~/components/banner"
 import Slogan from "~/components/Slogan"
+import api from '~/services/api'
 
 export default {
   components: {
@@ -34,33 +35,17 @@ export default {
     Banner,
     Slogan
   },
+  async created(){
+    const response = await api.getRestaurants()
+    if(response.status == 200) {
+      this.restaurants = response.data
+    }
+  },
   data() {
     return {
       likes: 0,
       showBanner: true,
-      restaurants: [
-      {
-        name: 'Restaurant La Cúpula',
-        description: 'Platos mediterráneos y coches antiguos',
-        slug: 'la-cupula',
-        category: 'Mediterráneos',
-        likes: 0
-      },
-      {
-        name: 'Restaurant Singular',
-        description: 'Brunch, desayunos y comidas con variada carta mediterránea en un luminoso café de moderno diseño minimalista.',
-        slug: 'Singular',
-        category: 'Brunch',
-        likes:0
-      },
-      {
-        name: 'Oporto Restaurante',
-        description: 'Bacalao, francesinhas y otras recetas de la gastronomía lusa en un coqueto bar decorado con cajas de oporto.',
-        slug: 'oporto',
-        category: 'Mediterráneos',
-        likes:0
-      }
-    ]
+      restaurants: []
     }
   },
   methods: {
