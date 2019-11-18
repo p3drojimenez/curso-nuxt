@@ -6,16 +6,17 @@
     </Hero>
     <div class="container">
       <section class="section">
-        <RestaurantCard
-          :name="restaurant.name"
-          :description="restaurant.description"
-          :category="restaurant.category"
-          :slug="restaurant.slug"
-          :likes="restaurant.likes"
-          v-on:onLikeButton="sumLikes(index)"
-          v-for="(restaurant, index) in restaurants"
-          :key="index"
-        />
+          <RestaurantCard
+            :name="restaurant.name"
+            :description="restaurant.description"
+            :category="restaurant.category"
+            :slug="restaurant.slug"
+            :likes="restaurant.likes"
+            v-on:onLikeButton="sumLikes(index)"
+            v-for="(restaurant, index) in restaurants"
+            :key="index"
+           
+          />
       </section>
     </div>
   </div>
