@@ -7,7 +7,9 @@
         </div>
       </div>
       <div class="table-container">
-       
+        <button class="button" @click="logOut">
+          Logout
+        </button>
         <table class="table is-fullwidth is-bordered">
           <thead>
             <tr>
@@ -36,7 +38,7 @@
   </div>
 </template>
 <script>
-import { db } from '~/plugins/firebase'
+import { db, firebase } from '~/plugins/firebase'
 export default {
   middleware: 'auth',
   data() {
@@ -69,6 +71,10 @@ export default {
       const ref = db.collection('restaurants').doc(id)
       ref.delete()
       this.getDocuments()
+    },
+    logOut() {
+      firebase.auth().signOut()
+      this.$router.push('/')
     }
   }
 
