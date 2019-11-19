@@ -13,6 +13,7 @@
             :category="restaurant.category"
             :slug="restaurant.slug"
             :likes="restaurant.likes"
+            :image="restaurant.image"
             v-on:onLikeButton="sumLikes(restaurant)"
             v-for="(restaurant, index) in restaurants"
             :key="index"
