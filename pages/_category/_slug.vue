@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="container">
+  <div class="container" v-if="restaurant">
     <section class="section">
       <h1 class="title is-1">{{ restaurant.name }}</h1>
       <nav class="breadcrumb" aria-label="breadcrumbs">
@@ -11,7 +11,7 @@
             </nuxt-link>
           </li>
           <li>
-            <nuxt-link :to="route.params.category" aria-current="page">
+            <nuxt-link :to="$route.params.category" aria-current="page">
               {{ $route.params.category }}
             </nuxt-link>
           </li>
