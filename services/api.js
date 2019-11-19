@@ -69,5 +69,14 @@ api.putSumRestaurantLikes = payload => {
   const url = 'restaurants/' + restaurantId
   return apiPut(url, payload.data)
 }
+
+api.getRestaurantsByCategory = ({category}) => {
+  return apiGet('restaurants?category=' + category)
+}
+
+api.getOneRestaurant = ({ slug }) => {
+  return apiGet('restaurants?slug=' + slug)
+}
+
 export default api
 

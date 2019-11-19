@@ -2,7 +2,7 @@
   <div class="card" style="width:400px;">
     <div class="card-image">
       <figure class="image">
-        <img src="~/assets/images/restaurant.jpg" alt="Pizza Restaurant" />
+        <img :src="image" alt="Pizza Restaurant" class="restaurant-image" />
       </figure>
     </div>
     <div class="card-content">
@@ -14,7 +14,9 @@
           <div class="columns">
             <div class="column">
               <span class="is-category tag">
-                {{ category }}
+                <a :href="category">
+                  {{ category }}
+                </a>
               </span>
             </div>
             <div class="column has-text-right">
@@ -27,7 +29,7 @@
       </div>
       <div class="content">
         {{ description}}
-        <a v-bind:href="slug">more info</a>.
+        <a v-bind:href="category +'/'+ slug">more info</a>.
       </div>
     </div>
   </div>
@@ -55,6 +57,10 @@ export default {
     likes: {
       type: Number,
       default: 0
+    },
+    image: {
+      type: String,
+      default: ''
     }
   },
   methods: {
@@ -71,5 +77,9 @@ export default {
 .restaurant-name {
   font-size: 30px;
   color: #8ae6ff;
+}
+.restaurant-image {
+  width: auto;
+  height: 200px;
 }
 </style>
