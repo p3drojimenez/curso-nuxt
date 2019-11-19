@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 export default {
   mode: 'universal',
   /*
@@ -33,6 +33,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Nuxt.js modules
@@ -50,5 +51,14 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  env: {
+    APIKEY: "AIzaSyBgzHZN82vUfvVQZ5Wc9mqdbMRWhkaioTw",
+    PROJECT_ID: "foodadvisor02",
+    AUTHDOMAIN: process.env.AUTHDOMAIN,
+    DATABASE_URL: process.env.DATABASE_URL,
+    STORAGE_BUCKET: process.env.STORAGE_BUCKET,
+    MESSAGEING_SENDER_ID: process.env.MESSAGEING_SENDER_ID,
+    APP_ID: process.env.APP_ID
   }
 }

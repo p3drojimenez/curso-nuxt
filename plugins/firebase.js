@@ -4,13 +4,13 @@ import 'firebase/firebase-auth'
 
 if (!firebase.apps.length) {
   const firebaseConfig = {
+    projectId: process.env.PROJECT_ID,
     apiKey: "AIzaSyBgzHZN82vUfvVQZ5Wc9mqdbMRWhkaioTw",
-    authDomain: "foodadvisor02.firebaseapp.com",
-    databaseURL: "https://foodadvisor02.firebaseio.com",
-    projectId: "foodadvisor02",
-    storageBucket: "foodadvisor02.appspot.com",
-    messagingSenderId: "822629886539",
-    appId: "1:822629886539:web:0cbf9a4643985ee91bfbce"
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGEING_SENDER_ID,
+    appId: process.env.APP_ID
   }
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig)
