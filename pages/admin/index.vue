@@ -24,6 +24,9 @@
                 <nuxt-link class="button" :to="item.id">
                   Edit
                 </nuxt-link>
+                <button class="button is-danger" @click="deleteDocument(item.id)">
+                Delete
+                </button>
               </td>
             </tr>
           </tbody>
@@ -41,20 +44,32 @@ export default {
     }
   },
   created() {
-    const response = db.collection('restaurants').get()
-    response
-      .then((snapshot) => {
-        snapshot.forEach((doc) => {
-          const restaurant = {
-            id: doc.id,
-            ...doc.data()
-          }
-          this.restaurants.push(restaurant)
+    this.getDocuments()
+  },
+  methods: {
+    getDocuments() {
+      this.restaurants = []
+      const response = db.collection('restaurants').get()
+      response
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            const restaurant = {
+              id: doc.id,
+              ...doc.data()
+            }
+            this.restaurants.push(restaurant)
+          })
         })
+        .catch((error) => {
+          console.log(error)
       })
-      .catch((error) => {
-        console.log(error)
-      })
-    } 
+    },
+    deleteDocument(id) {
+      const ref = db.collection('restaurants').doc(id)
+      ref.delete()
+      this.getDocuments()
+    }
+  }
+
 }
 </script>
