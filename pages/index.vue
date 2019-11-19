@@ -58,9 +58,9 @@ export default {
           ...doc.data()
         }
         this.restaurants.push(restaurant)
-      }).catch( error => {
-        console.log(error)
       })
+    }).catch( error => {
+      console.log(error)
     })
   },
   // async created(){

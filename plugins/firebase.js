@@ -5,7 +5,7 @@ import 'firebase/firebase-auth'
 if (!firebase.apps.length) {
   const firebaseConfig = {
     projectId: process.env.PROJECT_ID,
-    apiKey: "AIzaSyBgzHZN82vUfvVQZ5Wc9mqdbMRWhkaioTw",
+    apiKey: process.env.APIKEY,
     authDomain: process.env.AUTH_DOMAIN,
     databaseURL: process.env.DATABASE_URL,
     storageBucket: process.env.STORAGE_BUCKET,

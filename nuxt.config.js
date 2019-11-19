@@ -53,7 +53,7 @@ export default {
     }
   },
   env: {
-    APIKEY: "AIzaSyBgzHZN82vUfvVQZ5Wc9mqdbMRWhkaioTw",
+    APIKEY: process.env.APIKEY,
     PROJECT_ID: "foodadvisor02",
     AUTHDOMAIN: process.env.AUTHDOMAIN,
     DATABASE_URL: process.env.DATABASE_URL,
