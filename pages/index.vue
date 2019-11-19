@@ -32,6 +32,7 @@ import Hero from "~/components/Hero"
 import Banner from "~/components/banner"
 import Slogan from "~/components/Slogan"
 import api from '~/services/api'
+import { db } from '~/plugins/firebase'
 
 export default {
   components: {
@@ -47,6 +48,9 @@ export default {
     } catch {
       return { restaurants: [] }
     }
+  },
+  created() {
+    console.log(db)
   },
   // async created(){
   //   const response = await api.getRestaurants()
