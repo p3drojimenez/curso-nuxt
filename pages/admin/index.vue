@@ -10,6 +10,9 @@
         <button class="button" @click="logOut">
           Logout
         </button>
+        <nuxt-link to="admin/create" class="button is-success">
+          Crear Restaurante
+        </nuxt-link>
         <table class="table is-fullwidth is-bordered">
           <thead>
             <tr>
