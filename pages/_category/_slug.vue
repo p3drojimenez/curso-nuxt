@@ -11,7 +11,7 @@
             </nuxt-link>
           </li>
           <li>
-            <nuxt-link :to="route.params.category" aria-current="page">
+            <nuxt-link :to="$route.params.category" aria-current="page">
               {{ $route.params.category }}
             </nuxt-link>
           </li>
@@ -60,14 +60,18 @@
 
 <script>
 import api from "~/services/api"
+import { db } from '~/plugins/firebase'
 export default {
   async asyncData({ params }) {
+     const ref = db.collection('restaurants').where('slug', '==', params.slug)
+      let snapshot
     try {
-        /* petición getOneRestaurant() */
-    } catch (error) {
-      console.log({ statusCode: 404, message: 'Restaurant not found' })
+      snapshot = await ref.get()
+    } catch (e) {
+        return { restaurant: {} }
     }
-  }
+     return { restaurant: snapshot.docs.shift().data() }
+    }
   }
 </script>
 

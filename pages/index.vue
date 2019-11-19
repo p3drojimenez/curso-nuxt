@@ -41,16 +41,27 @@ export default {
     Banner,
     Slogan
   },
-  async asyncData() {
-    try {
-      const { data } = await api.getRestaurants()
-      return { restaurants: data }
-    } catch {
-      return { restaurants: [] }
-    }
-  },
+  // async asyncData() {
+  //   try {
+  //     const { data } = await api.getRestaurants()
+  //     return { restaurants: data }
+  //   } catch {
+  //     return { restaurants: [] }
+  //   }
+  // },
   created() {
-    console.log(db)
+   const response = db.collection('restaurants').get()
+  response.then(snapshot => {
+      snapshot.forEach((doc) => {
+        const restaurant = {
+          id: doc.id,
+          ...doc.data()
+        }
+        this.restaurants.push(restaurant)
+      }).catch( error => {
+        console.log(error)
+      })
+    })
   },
   // async created(){
   //   const response = await api.getRestaurants()
