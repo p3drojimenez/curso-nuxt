@@ -38,6 +38,7 @@
 <script>
 import { db } from '~/plugins/firebase'
 export default {
+  middleware: 'auth',
   data() {
     return {
       restaurants: []
