@@ -62,6 +62,14 @@
 import api from "~/services/api"
 import { db } from '~/plugins/firebase'
 export default {
+  head () {
+  return {
+      title: 'FoodAdvisor =>' + this.restaurant.name ,
+      meta: [
+        { hid: 'description', name: 'description', content: 'En este sitio encontraras información sobre los restaurantes mejor valorados en tu ciudad.' }
+      ]
+    }
+  },
   async asyncData({ params }) {
      const ref = db.collection('restaurants').where('slug', '==', params.slug)
       let snapshot
