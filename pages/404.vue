@@ -9,7 +9,7 @@
     </div>
     <div class="columns">
       <div class="column has-text-centered">
-        <p>Página no encontrada</p>
+        <p>¡Página no encontrada!</p>
       </div>
     </div>
     <div class="columns">
