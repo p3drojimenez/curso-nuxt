@@ -39,6 +39,15 @@ import RestaurantCard from '~/components/RestaurantCard'
 import api from '~/services/api'
 import { db } from '~/plugins/firebase'
 export default {
+  head () {
+  return {
+      title: 'FoodAdvisor =>' + this.$route.params.category ,
+      meta: [
+        { hid: 'description', name: 'description',
+          content: 'En este sitio encontraras información sobre los restaurantes mejor valorados en tu ciudad.' }
+      ]
+    }
+  },
   components: {
     RestaurantCard,
   },
