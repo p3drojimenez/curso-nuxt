@@ -30,7 +30,7 @@
 import RestaurantCard from "~/components/RestaurantCard"
 import Hero from "~/components/Hero"
 import Banner from "~/components/banner"
-import Slogan from "~/components/Slogan"
+import Slogan from "~/components/slogan"
 import api from '~/services/api'
 import { db } from '~/plugins/firebase'
 

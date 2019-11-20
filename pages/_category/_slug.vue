@@ -11,7 +11,7 @@
             </nuxt-link>
           </li>
           <li>
-            <nuxt-link :to="$route.params.category" aria-current="page">
+            <nuxt-link :to="'/' + $route.params.category" aria-current="page">
               {{ $route.params.category }}
             </nuxt-link>
           </li>

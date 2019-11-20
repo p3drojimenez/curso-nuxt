@@ -26,7 +26,7 @@
               <td>{{ item.id }}</td>
               <td>{{ item.name }}</td>
               <td>
-                <nuxt-link class="button" :to="item.id">
+                <nuxt-link class="button" :to="'admin/' + item.id">
                   Edit
                 </nuxt-link>
                 <button class="button is-danger" @click="deleteDocument(item.id)">

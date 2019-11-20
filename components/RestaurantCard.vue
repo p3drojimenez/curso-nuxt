@@ -29,7 +29,7 @@
       </div>
       <div class="content">
         {{ description}}
-        <a :href="category + '/' + slug">more info</a>.
+        <nuxt-link :to="category + '/' + slug">more info</nuxt-link>.
       </div>
     </div>
   </div>
