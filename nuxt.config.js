@@ -1,3 +1,4 @@
+import { db } from './plugins/firebase'
 export default {
   mode: 'universal',
   /*
@@ -48,6 +49,25 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  },
+  generate: {
+    async routes() {
+      let routesList = []
+      try {
+        const data = await db.collection('restaurants').get()
+        const docs = await data.docs
+        docs.map(doc => {
+          const category = '/' + doc.data().category
+          routesList.push(category)
+          const route = '/' + doc.data().category + '/' + doc.data().slug
+          routesList.push(route)
+        })
+        return routesList
+      } catch (error) {
+        console.log(error)
+        return []
+      }
     }
   }
 }
