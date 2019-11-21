@@ -1,22 +1,23 @@
-# 📗 Clase 2: Qué es NUXTJS
+# 📗 Clase 3:
 
-Nuxtjs es un framework basado en vuejs escrito en javascript. Si no sabes que es un framework, podríamos resumirlo como una herramienta predefinida con algunas restricciones en cuanto a su implementación pero que facilitan el desarrollo del software gracias a sus métodos, librerías o su organización de directorios.
+ Diferencias entre **SPA** y **SSR**.
 
-Nuxtjs es modular, podemos ir añadiendo funcionalidades según las necesitemos, es decir, no tenemos que empezar con un paquete muy grande, si no que se empieza con lo mínimo, y se van instalando las dependencias según el proyecto va creciendo.
+ Con nuxtjs podemos generar estos dos tipos de páginas, pero primero de todo debemos saber que es cada una y conocer así sus diferencias.
 
-Nuxtjs viene para facilitar la configuración del **Server Side Render**, que eso con vuejs era un poco más complejo, pero nuxtjs viene ya todo configurado y listo para crear páginas estáticas. Eso pues ayuda a la performace de la aplicación como iremos viendo.
+ Las SPA, son páginas que se renderizan de una sola vez, exactamente no es así, pero sí que necesita que toda o casi toda la parte lógica de la aplicación este de cara al cliente. Su rendimiento dependerá de como e grande sean esos ficheros y la velocidad de descarga. Es bueno por ejemplo para equipos con unos procesadores decentes y nuevos.
 
-Nuxtjs es Open Source y tiene una documentación muy completa. No tendrás problemas en encontrar ayuda si necesitas consultar un problema en tu código.
+ Una SPA, no tiene páginas como tal si no vistas y todas son accesibles desde el root, es decir, que si por ejemplo quisiéramos ir al detalle de un restaurante, que la url seria tipo "restaurante/nombre-del-restaurante", no podríamos hacerlo y deberíamos ir al a home e ir pinchando en los enlaces correspondientes hasta llegar allí. Tiene sus ventajas y sus inconvenientes.
 
-## Cuándo usar Nuxtjs y cuando no en tus proyectos.
+ Los robots de indexación, tipo google, tienen problemas para indexar este tipo de páginas ya que esas rutas que hemos dicho antes, no son accesibles desde una url normal.
 
-Básicamente cuando necesites realizar un prototipado de un proyecto, por ejemplo para testear una idea de negocio o un proyecto. Al ser muy rápido podrás disponer de artefactos de una manera rápida.
 
-Tambien, cuando quieras empezar un proyecto mediano o grandes, que necesiten sus test, sus integraciones continuas etc..
+ Y las páginas SPA se ejecutan siempre del lado del cliente.
 
-Y si quieres crear páginas con una buena perfomarce.
+ Por otro lado, tenemos las SSR o también llamadas isomorfas. Estas páginas son accesibles desde el exterior, ya que hay un prerenderizado de las páginas por parte del servidor, es decir, que en el momento de generar nuestra aplicación y subirla al servidor, se han de generar cada una de esas páginas. El proceso es muy rápido y aun que tengamos un e-comerce con cientos de páginas no se demora mucho.
 
-Una idea de las empresas que usan Nutjx, que yo conozca de primera mano son Globo y Holaluz. Aparte de los proyectos con los que trabajo. Aqui abajo teneis un enlace a una lista enorme de empresas que trabajan con nuxtjs.
 
-Si todavia tienes alguna duda de por que usar nuxtjs en tus proyectos, te animo a que sigas el curso y veas si nuxtjs se adapta a tu proyecto, tu forma de trabajar y las necesidades de tu negocio.
+Son muy buenas para indexar en los buscadores, tiene sentido, ya que google las conoce o mejor dicho, puede acceder a ellas.
+
+
+Y parte de su renderizado es por parte del servidor, esto facilita dos cosas, lo primero que las páginas se han renderizado en el servidor y por lo tanto se puede cachear a otros usuario, haciendo mucho más rápido su acceso y dos elimina carga de procesado del lado del cliente, por lo que si nuestra app es muy grande, el usuario solo vera las partes que el requiera, que haya solicitado y no todas las páginas.
 
