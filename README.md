@@ -1,147 +1,65 @@
-# 📗 Clase 16 Layouts
+# 📗 Clase 17 Propiedades Computadas:
 
-**Resumen**
-~~~
-En esta clase aprenderás a crear Layouts para hacer que tus páginas sean más escalables y que todas mantengan los mismos estilos.
-~~~
 
-Un layout es un componente de vuejs que podemos usar para crear un theme de nuestro proyecto y aplicar a todas las páginas o solo a un grupo de ellas.
+## Computed Properties
 
-Para crear un Layout debes hacerlo en el directorio **layouts**.
+Las computed properties son sencillamente funciones que se comportan dentro de un componente como una propiedad. Esta caracteristica nos ayuda a generar datos reactivos sin tener que estar llamando a funciones o realizando calculos antes de renderizar las propiedades en html.
 
-Cada layout debe incuir el componente de nuxtjs `<nuxt/>`que sera el encargado de renderizar las páginas, en definitiva, nuxtjs sustituira ese componente por el corresponiente dentro del direcotio de *pages*
+Para crear una propiedad computada debemos hacerlo usando la propiedad **computed**. En nuestro ejemplo hemos escrito una función que retorna el valor de la propiedad **message** pero invertido:
 
-## Header
-
-Vamos a crear un componente `header.vue` para que se pueda ver desde todas las páginas la misma cabecera.
-
-*NOTA*: Recuerda importar `logo.png` en el directorio **static** para no tener problemas o errores.
-
-**layouts/header.vue**
-```html
-<template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand logo">
-      <img src="@/static/logo.png" alt="FoodAdvisor logo" />
-    </div>
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a href="/login" class="button is-light">
-            Log in
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
-</template>
-
-<script>
-export default {}
-</script>
-<style scoped>
-.logo {
-  width: 100px;
-  margin: 0 20px;
-}
-</style>
-```
-
-Si modificamos el layout por defecto:
-
-**layouts/default.vue**
-
-```html
-<template>
-  <div>
-    <Header />
-    <nuxt />
-  </div>
-</template>
-
-<script>
-import Header from "~/layouts/header"
-
-export default {
-  components: {
-    Header
+```js
+computed: {
+  messageResersed() {
+    return this.message.split('').reverse().join('')
   }
 }
-</script>
 ```
 
-Ahora veremos una cabecera en todas las páginas.
 
-![resultado header](assets/capturas/clase16/resultado.png)
-
-
-## Layout Login.vue 
-
-
-Vamos a crear un layout especifico para las páginas que no nos interesa mostrar la cabecera. Para ello creamos un nuevo layout llamado `login.vue`.
-
-**layouts/login.vue**
+Dentro de nuestro código HTML, podemos renderizar esta propiedad mediante una expresión al igual que las propiedades del modelo del componente:
 
 ```html
-<template>
-  <div>
-    <nuxt />
-  </div>
-</template>
+<p>Mensaje invertido: {{ messageResersed }}</p>
 ```
-**NOTA**: Recuerda siempre incluir el componente <nuxt/>
 
-En este componente, por el momento no vamos a usar nada de javascript ni estilos, por lo que no es necesario incluir las etiquetas.
+## Watchers
 
-Ahora, vamos a crear una página `login.vue` y mediante la propiedad `layout` le indicaremos que ese componente (página) use el layout que acabamos de crear.
+Son observadores que se activan cuando el valor de una propiedad de modifica. Para crear un watcher debemos hacerlo mediante la propiedad **watcher** de vuejs y dentro escribir el observador con el mismo nombre de la propiedad que queremos que escuche. En nuestro caso, hemos usado la propiedad **name** 
+
+```js
+watch: {
+  name() {
+    if(this.name.length > 5) {
+      this.error = "Nombre demasiado largo"
+    } else {
+      this.error = ''
+    }
+  }
+}
+```
+
+Desde este momento, cuando la propiedad `name` tenga más de 5 caracteres, saltara un error que se renderizada.
 
 ```html
-<template>
-  <div class="box column is-4 is-offset-4 box-login">
-    <div class="columns">
-      <div class="column has-text-centered">
-        <img src="@/static/logo.png" />
-      </div>
-    </div>
-    <div class="columns">
-      <div class="column has-text-left">
-        <input class="input" type="text" placeholder="email" />
-      </div>
-    </div>
-    <div class="columns">
-      <div class="column has-text-left">
-        <input class="input" type="text" placeholder="contraseña" />
-      </div>
-    </div>
-    <div class="columns">
-      <div class="column has-text-centered">
-        <nuxt-link to="/" class="button is-danger">Cancelar</nuxt-link>
-        <nuxt-link to="/admin" class="button is-primary">Login</nuxt-link>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-export default {
-  layout: 'login'
-}
-</script>
-
-<style>
-.box-login {
-  margin-top: 30px;
-}
-</style>
+ <p v-if="error != '' " class="tag is-warning">{{ error }} </p>
 ```
 
+**No olvides crear la propiedad `error: ''` en el modelo.**
+
+```js
+data() {
+    return {
+      ....
+      name: '',
+      error: ''
+    }
+  },
+```
 
 ### ⚒️ RECOMENDACIÓN:
 
 ### 📚 Referencias y ayudas
-
-- [Vuejs Router](https://router.vuejs.org/guide/essentials/dynamic-matching.html)
-- [Nuxtjs Rutas dinámicas](https://nuxtjs.org/guide/routing/)
+- [Computed Properties](https://vuejs.org/v2/guide/computed.html)
 - [Bulma io](https://bulma.io/)
 - [Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
 - [Guía Oficial de instalación Nuxtjs](https://nuxtjs.org/guide/installation)
