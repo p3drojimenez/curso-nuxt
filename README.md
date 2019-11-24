@@ -68,7 +68,6 @@
 - [x] **CLASE 47**: Despleguando nuestra aplicación con Netlify.
 
 ### Bloque 9: *Bonnus*
-- [X] **Variables de entorno en Nuxtjs.**
 - [x] **Configurando Github Actions**
 - [x] **Mejorando el SEO de FoodAdvisor**
 - [x] **Crear un blog con Nuxtjs y Markdown**
