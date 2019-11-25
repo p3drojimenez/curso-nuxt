@@ -1,4 +1,4 @@
-# 📗 Clase 15 Eventos y páginas dinámicas:
+# 📗 Clase 15  Páginas Estáticas y dinámicas:
 
 ## Páginas Estáticas
 
