@@ -1,4 +1,4 @@
-# 📗 Clase 9: Estructura de directorios en NUXJS
+# 📗 Clase 8: Estructura de directorios en NUXJS
 
 ### ASSETS:
 
