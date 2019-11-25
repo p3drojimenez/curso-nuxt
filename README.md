@@ -1,4 +1,4 @@
-# Clase 8: Crear repositorio en Github
+# Clase 7: Crear repositorio en Github
 
 ### 💻️ Pasos para crear un repositorio:
 
