@@ -1,4 +1,4 @@
-# 📗 Clase 10: Configuración inicial Nuxtjs y Bulma CSS
+# 📗 Clase 9: Configuración inicial Nuxtjs y Bulma CSS
 
 ### Instalando Bulma Css
 
