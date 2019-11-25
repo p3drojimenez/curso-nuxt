@@ -1,22 +1,49 @@
-# foodAdvisor
+# 📗 Clase 21 Custom Events
 
-> Web con información de restaurantes
+Un componente hijo puede enviar información al componente padre mediante los custom events. Para ello, usaremos el método `emit()` al que enviaremos por parametro el nombre del evento.
 
-## Build Setup
+**NOTA**: Debemos escribir el método $emit() con el simbolo del dolar, por que es un metodo que nos proporciona el propio framework de nuxt.
 
-``` bash
-# install dependencies
-$ npm run install
+**components/RestaurantCard.vue**
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+Modificamos el método para que emita el evento `onLikeButton`.
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+```js
+onLikeButton(){
+  this.$emit('onLikeButton')
+  // this.likes++
+}
+```
+**pages/index.vue**
 
-# generate static project
-$ npm run generate
+Debemos capturar ese evento del hijo desde el componente padre. Eso lo hacemos añadiendo la directiva `v-on:` al componente. Es importante que la directiva `v-on`este asociada con el mismo nombre del evento, si no, el componente *padre* no sera capaz de reconocer el evento.
+
+```html
+<RestaurantCard
+  name="Restaurant Name"
+  description="Description......"
+  slug="restaurant-slug"
+  category="Burguer"
+  :likes="likes"
+  v-on:onLikeButton="sumRestaurantLikes"
+/>
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+`sumRestaurantLikes` es el método que se encargara de la lógica de sumar un like al restaurante.
+
+```js
+methods: {
+  sumRestaurantLikes() {
+    this.likes++
+  }
+}
+```
+
+### 📚 Referencias y ayudas
+
+- [Vuejs Router](https://router.vuejs.org/guide/essentials/dynamic-matching.html)
+- [Bulma io](https://bulma.io/)
+- [Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
+- [Guía Oficial de instalación Nuxtjs](https://nuxtjs.org/guide/installation)
+- [Git](https://www.git-scm.com/)
+- [GitHub](https://github.com/)
