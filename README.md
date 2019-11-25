@@ -1,22 +1,22 @@
-# foodAdvisor
+# 📗 Clase 41 Autentificación con Firebase
 
-> Web con información de restaurantes
+### Configuración Auth en firebase
 
-## Build Setup
+Para activar el servicio de autentificación en firebase, necesitamos hacerlo desde la consola de nuestro proyecto.
 
-``` bash
-# install dependencies
-$ npm run install
+En la barra lateral podemos ver el apartado **Authentication**
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+Ahora, debemos activar un método de autentificación o de inicio de sesión. En nuestro caso, vamos a hacerlo mediante **email** y **contraseña**.
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+Después, solo nos falta añadir un email y una constaseña para dar acceso a un usuario.
 
-# generate static project
-$ npm run generate
-```
+Una vez hecho esto, ya podemos configurar nuestro proyecto para usar el sistema de autentificación.
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+### ⚒️ RECOMENDACIÓN:
+
+### 📚 Referencias y ayudas
+- [Firebase](https://firebase.google.com/docs/projects/learn-more?hl=es)
+- [Guía Oficial de Nuxtjs](https://nuxtjs.org/guide)
+- [Git](https://www.git-scm.com/)
+- [GitHub](https://github.com/)
