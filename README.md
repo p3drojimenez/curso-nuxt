@@ -1,22 +1,96 @@
-# foodAdvisor
+# 📗 Clase 45 Solución del reto
 
-> Web con información de restaurantes
 
-## Build Setup
+**pages/index.vue**
 
-``` bash
-# install dependencies
-$ npm run install
+- Importamos `import { db } from '~/plugins/firebase'`
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+- Modificamos el hook created() para que realice la llamada a firebase.
 
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+```js
+import { db } from '~/plugins/firebase'
+...
+created() {
+  const data = db.collection('restaurants').get()
+  data
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        const restaurant = {
+          id: doc.id,
+          ...doc.data()
+        }
+        this.restaurants.push(restaurant)
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+**pages/_category/_slug.vue**
+
+- Modificamos el método asyncData
+
+```js
+<script>
+// import api from '~/services/api'
+import { db } from '~/plugins/firebase'
+
+export default {
+  async asyncData({ params }) {
+    const ref = db.collection('restaurants').where('slug', '==', params.slug)
+    let snapshot
+    try {
+      snapshot = await ref.get()
+    } catch (e) {
+      return { restaurant: {} }
+    }
+    return { restaurant: snapshot.docs.shift().data() }
+  }
+}
+</script>
+```
+**pages/_category/index.vue**
+
+- Borramos el componente asycnData y creamos la llamada desde `hook created` de forma asincrona
+
+```js
+<script>
+import RestaurantCard from '~/components/RestaurantCard'
+// import api from '~/services/api'
+import { db } from '~/plugins/firebase'
+
+export default {
+  components: {
+    RestaurantCard
+  },
+  data() {
+    return {
+      restaurants: []
+    }
+  },
+  async created() {
+    await db
+      .collection('restaurants')
+      .where('category', '==', this.$route.params.category)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          this.restaurants.push(doc.data())
+        })
+      })
+  }
+}
+</script>
+```
+
+Además se modifica el componente `RestaurantCard.vue` para que accepte la propiedad **image**.
+
+
+### 📚 Referencias y ayudas
+- [Firebase](https://firebase.google.com/docs/projects/learn-more?hl=es)
+- [Middlewares](https://nuxtjs.org/api/pages-middleware/)
+- [Guía Oficial de Nuxtjs](https://nuxtjs.org/guide)
+- [Git](https://www.git-scm.com/)
+- [GitHub](https://github.com/)
