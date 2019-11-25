@@ -1,22 +1,32 @@
-# foodAdvisor
+# 📗 Clase 25 Módulos
 
-> Web con información de restaurantes
+Si durante el proceso de instalación no seleccionaste AXIOS como módulo para las peticiones HTTP, es el momento de instalarlo ahora.
 
-## Build Setup
+Aunque puedes realizar las peticiones de igualmanera usando `fetch()` la comunidad y el propio creador de Vuejs recomienda usar **AXIOS**.
 
-``` bash
-# install dependencies
-$ npm run install
+## Instalación:
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+Instalamos el paquete / módulo @nuxtjs/axios usando el gestor de paquetes `npm`
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+```shell
+npm install --save @nuxtjs/axios
+```
+Y añadimos el módulo a nuestro fichero de configuración `nuxt.config.js`
 
-# generate static project
-$ npm run generate
+```js
+  modules: [
+    '@nuxtjs/bulma',
+    '@nuxtjs/axios'
+  ],
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+### ⚒️ RECOMENDACIÓN:
+
+### 📚 Referencias y ayudas
+
+
+### 📚 Referencias y ayudas
+- [AXIOS](https://es.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html)
+- [Guía Oficial de instalación Nuxtjs](https://nuxtjs.org/guide/installation)
+- [Git](https://www.git-scm.com/)
+- [GitHub](https://github.com/)
