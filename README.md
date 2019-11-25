@@ -1,6 +1,6 @@
-# Solución
+# 📗 Clase 32 Solución del reto:
 
-## Todos los restaurantes de una categoria en concreto.
+## Todos los restaurantes de una categoria en concreto
 
 
 ```js
