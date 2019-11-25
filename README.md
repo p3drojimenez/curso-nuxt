@@ -1,59 +1,46 @@
-# 📗 Clase 10: Configuración inicial Nuxtjs y Bulma CSS
+# 📗 Clase 10: Contexto de nuxtjs
 
-### Instalando Bulma Css
+## ¿Qué es el contexto de nuxtjs?
 
-Para poder usar el frameword de Bulma en nuestro proyecto, empezaremos instalando el modulo ``@nuxtjs/bulma``.
+El **contexto** en una aplicación de nuxtjs son objetos(con sus métodos) y parametros que extienden la instancia de vuejs.
 
-``npm install @nuxtjs/bulma``
+Podemos encontrar métodos como por ejemplo:
 
-Una vez instalado, podemos ver en nuestro fichero **pakage.json** como se ha incluido la dependencia de **bulma**.
+- asyncData()
+- fetch()
 
-```json
-  "dependencies": {
-    "@nuxtjs/bulma": "^1.2.5",
-    ...
-  },
-```
+Podemos escribir **plugins** o **middlewares**.
 
-Tenemos que añadir en nuestro fichero ``nuxt.config.js``, el framework:
-
-```javascript
-  modules: [
-    '@nuxtjs/bulma'
-  ],
-```
-
-👍 Ahora tenemos todo listo para poder usar las clases de Bulma en nuestros componentes.
-
-Para comprobar que todo esta correcto y que Bulma Css se ha configurado correctamente, podemos escribir el siguienete código en el fichero **pages/index.vue**
-
-```html
-<template>
-  <div class="container">
-    <section class="section">
-      <h1 class="title is-1">
-        FoodAdvisor
-      </h1>
-      <button class="button is-info">
-        Enter
-      </button>
-    </section>
-  </div>
-</template>
-
-<script>
-export default {
-  components: {}
+```js
+function (context) {
+  // Universal keys
+  const {
+    app,
+    store,
+    route,
+    params,
+    query,
+    env,
+    isDev,
+    isHMR,
+    redirect,
+    error
+  } = context
+  // Server-side
+  if (process.server) {
+    const { req, res, beforeNuxtRender } = context
+  }
+  // Client-side
+  if (process.client) {
+    const { from, nuxtState } = context
+  }
 }
-</script>
-<style></style>
 ```
 
-## Resultado
+Puedes consultar más información en la documentación oficial de Nuxtjs.
 
-![imagen](assets/capturas/clase10/resultado.png)
+[The context](https://nuxtjs.org/api/context/)
 
 ### 📚 Referencias y ayudas
 
 - [Guía Oficial de instalación Nuxtjs](https://nuxtjs.org/guide/installation)
-- [Bulma io](https://bulma.io/)
