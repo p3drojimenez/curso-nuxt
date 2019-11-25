@@ -1,109 +1,86 @@
-# 📗 Clase 38 Listando datos en Firebase(firestore):
+# 📗 Clase 39 Actualizando datos en Firebase(firestore)
 
-Para poder recuperar los datos de la base de datos, debemos realizar una petición a firebase sobre la colección `restaurants` y luego insertar cada documento en un array dentro de nuestro modelo de datos.
+## Realizando la petición del documento:
 
-```js
-created() {
-  const data = db.collection('restaurants').get()
-  data
-    .then((snapshot) => {
-      snapshot.forEach((doc) => {
-        this.restaurans.push(doc.data())
-      })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
-```
+Primero, tenemos que crear una vista para poder mostrar el formulario con los campos del restaurante, para ello y como cada restaurante es único, vamos a crear un componente dentro de la carpera *admin* llamandolo `_id.vue`, de tal forma que podamos desde la lista de restaurantes ver cada restaurante en concreto filtrandolo por su *ID* en firebase.
 
-Por convención, Firebase llama `snapshot` a una "captura" del documento dentro de la colección, te recomiendo que lo llames de la misma manera, ya que toda la documentación oficial sigue ese patrón.
+**pages/admin/_id.vue**
 
-Después creamos en nuestro modelo de datos, el array restaurants, para después renderizarlo en la vista `{{ restaurants }}`
+Vamos a practicamente reutilizar el mismo formulario que usamos en `create.vue`, pero debemos hacer algunas modificaciones:
 
-```js
-  data() {
-    return {
-      restaurans: []
-    }
-  },
-```
+- **Slug**: El slug, ya no se puede modificar, por lo que debemos eliminar toda la lógica que generaba esa url. Ahora sera una simple propiedad del objeto `restaurant`.
 
-## Creando una tabla:
-
-**admin/index.vue**
-
-```html
-<template>
-  <div>
-    <section class="section" >
-      <div class="columns">
-        <div class="column">
-          <h2 class="title is-2">Resturantes</h2>
-        </div>
-      </div>
-      <div class="table-container">
-        <table class="table is-fullwidth is-bordered">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Restaurant name</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in restaurans" :key="index">
-              <td>{{ item.id }}</td>
-              <td>{{ item.name }}</td>
-              <td>
-                <nuxt-link class="button" :to="`admin/${item.id}`" >
-                  Edit
-                </nuxt-link>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+  ```json
+  <label class="label">Slug</label>
+  <div class="control">
+    <input
+      class="input"
+      type="text"
+      :placeholder="restaurant.slug"
+      disabled
+    />
   </div>
-</template>
-```
+  ```
 
-**admin/_id**
+- Debemos interceptar el parametro `id` que nos envia la ruta anterior, eso lo haremos en el `hook created()`.
 
-```html
-<template>
-  <div>
-    {{ $route.params.id }}
-    {{ restaurant }}
-  </div>
-</template>
+  ```js
+  created() {
+      const id = this.$route.params.id
+  }
+  ```
 
-<script>
-import { db } from '~/plugins/firebase'
-export default {
+- Cambiar el método `onSubmitButton` por `onUpdateButton`
+
+  ```html
+  <button
+    class="button is-link"
+    type="button"
+    @click.prevent="onUpdateButton"
+  >
+    Update
+  </button>
+  ```
+
+  - Debemos crear una referencia del documento para poder actualizarlo
+
+  ```js
   data() {
-    return {
-      restaurant: null
-    }
-  },
-  created() {
-    const response = db.collection('restaurants').doc(this.$route.params.id).get()
+      return {
+        restaurant: {},
+        ref: null
+      }
+    },
+  ```
+
+  - Crear referencia del documento que vamos a modificar (para después actualizarlo).
+  
+  `this.ref = db.collection('restaurants').doc(id)`
+   
+  - Realizar la consulta del documento, si existe, asocia el documento a nuestro modelo `restaurant` si no, mostrara un mensaje por consola.
+
+  ```js
+    this.ref = db.collection('restaurants').doc(this.$route.params.id)
+    const response = this.ref.get()
     response.then(doc => {
       if(doc.exists) {
         this.restaurant = doc.data()
       }
     })
+  ```
+
+  - Una vez que tenemos el documento y el formulario, debemos crear la lógica para actualizar el documento:
+
+  ```js
+  onUpdateButton() {
+    this.ref.update(this.restaurant).then(() => {
+      this.$router.back()
+    })
   }
-}
-</script>
+  ```
+  
+  > Como hemos referenciado el documento en nuestro modelo no es necesario volver a realizar la consulta. Si todo va bien, una vez actualizado retornara a la lista de restaurantes con el valor modificado.
 
-<style scoped>
-
-</style>
-```
-
-### ⚒️ RECOMENDACIÓN:
 
 
 ### 📚 Referencias y ayudas
